@@ -27,6 +27,7 @@ plugin_read_list_into_result() {
 }
 
 if [ -n "${BUILDKITE_PLUGIN_TARGET_DIRECTORY:-}" ]; then
+    echo "--- switching to target directory $BUILDKITE_PLUGIN_TARGET_DIRECTORY"
     mkdir -p "$BUILDKITE_PLUGIN_TARGET_DIRECTORY"
     cd "$BUILDKITE_PLUGIN_DIRECTORY"
 fi
