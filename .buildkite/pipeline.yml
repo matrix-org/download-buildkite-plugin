@@ -7,7 +7,7 @@ steps:
   - label: ":sparkles:"
     plugins:
       plugin-linter#v2.0.0:
-        id: download
+        id: matrix-org/download
 
   - wait
 
