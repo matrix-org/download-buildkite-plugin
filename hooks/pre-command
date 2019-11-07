@@ -26,11 +26,13 @@ plugin_read_list_into_result() {
   [[ ${#result[@]} -gt 0 ]] || return 1
 }
 
+args=()
+
 target_dir="${BUILDKITE_PLUGIN_DOWNLOAD_TARGET_DIRECTORY:-}"
 if [ -n "$target_dir" ]; then
-    echo "--- switching to target directory $target_dir"
+    echo "Using target directory $target_dir"
     mkdir -p "$target_dir"
-    cd "$target_dir"
+    args+=("--directory_prefix=$target_dir")
 fi
 
 plugin_read_list_into_result BUILDKITE_PLUGIN_DOWNLOAD_URLS || {
@@ -38,5 +40,4 @@ plugin_read_list_into_result BUILDKITE_PLUGIN_DOWNLOAD_URLS || {
     exit 1
 }
 
-
-wget "${result[@]}"
+wget "${args[@]}" "${result[@]}"
