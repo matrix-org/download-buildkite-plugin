@@ -32,7 +32,7 @@ target_dir="${BUILDKITE_PLUGIN_DOWNLOAD_TARGET_DIRECTORY:-}"
 if [ -n "$target_dir" ]; then
     echo "Using target directory $target_dir"
     mkdir -p "$target_dir"
-    args+=("--directory_prefix=$target_dir")
+    args+=("--directory-prefix=$target_dir")
 fi
 
 plugin_read_list_into_result BUILDKITE_PLUGIN_DOWNLOAD_URLS || {
