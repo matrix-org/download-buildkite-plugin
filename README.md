@@ -10,7 +10,7 @@ The following pipeline downloads this file and then prints it out.
 steps:
   - command: cat downloads/README.md
     plugins:
-      - matrix-org/download:
+      - matrix-org/download#v1.0.0:
           target-directory: downloads
           urls:
             - https://raw.githubusercontent.com/matrix-org/download-buildkite-plugin/master/README.md

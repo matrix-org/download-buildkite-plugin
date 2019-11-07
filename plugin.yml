@@ -1,6 +1,7 @@
 name: Download
 description: Downloads URLs to a local directory
-
+author: https://github.com/matrix-org
+requirements: []
 configuration:
   properties:
     urls:
