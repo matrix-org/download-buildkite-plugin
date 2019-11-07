@@ -37,4 +37,4 @@ plugin_read_list_into_result BUILDKITE_PLUGIN_DOWNLOAD_URLS || {
 }
 
 
-wget "${result[@]}
+wget "${result[@]}"
