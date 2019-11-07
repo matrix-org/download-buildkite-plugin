@@ -1,0 +1,20 @@
+steps:
+  - label: ":shell: Shellcheck"
+    plugins:
+      shellcheck#v1.1.2:
+        files: hooks/**
+
+  - label: ":sparkles:"
+    plugins:
+      plugin-linter#v2.0.0:
+        id: download
+
+  - wait
+
+  - label: try it out
+    command: cat downloads/README.md
+    plugins:
+      - .:
+          target-directory: downloads
+          urls:
+            - https://raw.githubusercontent.com/matrix-org/download-buildkite-plugin/master/README.md

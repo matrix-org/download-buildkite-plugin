@@ -1,0 +1,12 @@
+name: Download
+description: Downloads URLs to a local directory
+
+configuration:
+  properties:
+    urls:
+      type: array
+    target-directory:
+      type: string
+
+  required:
+    - urls

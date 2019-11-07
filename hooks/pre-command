@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Reads a list from plugin config into a global result array
+# Returns success if values were read
+plugin_read_list_into_result() {
+  result=()
+
+  for prefix in "$@" ; do
+    local i=0
+    local parameter="${prefix}_${i}"
+
+    if [[ -n "${!prefix:-}" ]] ; then
+      echo "🚨 Plugin received a string for $prefix, expected an array" >&2
+      exit 1
+    fi
+
+    while [[ -n "${!parameter:-}" ]]; do
+      result+=("${!parameter}")
+      i=$((i+1))
+      parameter="${prefix}_${i}"
+    done
+  done
+
+  [[ ${#result[@]} -gt 0 ]] || return 1
+}
+
+if [ -n "${BUILDKITE_PLUGIN_TARGET_DIRECTORY:-}" ]; then
+    mkdir -p "$BUILDKITE_PLUGIN_TARGET_DIRECTORY"
+    cd "$BUILDKITE_PLUGIN_DIRECTORY"
+fi
+
+plugin_read_list_into_result BUILDKITE_PLUGIN_DOWNLOAD_URLS || {
+    echo "🚨 didn't get a value for $BUILDKITE_PLUGIN_DOWNLOAD_URLS" >&2
+    exit 1
+}
+
+
+wget "${result[@]}
