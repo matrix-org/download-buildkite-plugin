@@ -12,9 +12,8 @@ steps:
   - wait
 
   - label: try it out
-    command: cat downloads/README.md
+    command: cat $BUILDKITE_DOWNLOADS_PATH/README.md
     plugins:
       - ${BUILDKITE_REPO}#${BUILDKITE_COMMIT}:
-          target-directory: downloads
           urls:
             - https://raw.githubusercontent.com/matrix-org/download-buildkite-plugin/master/README.md

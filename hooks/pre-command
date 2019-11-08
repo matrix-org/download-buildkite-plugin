@@ -26,14 +26,11 @@ plugin_read_list_into_result() {
   [[ ${#result[@]} -gt 0 ]] || return 1
 }
 
-args=()
-
-target_dir="${BUILDKITE_PLUGIN_DOWNLOAD_TARGET_DIRECTORY:-}"
-if [ -n "$target_dir" ]; then
-    echo "Using target directory $target_dir"
-    mkdir -p "$target_dir"
-    args+=("--directory-prefix=$target_dir")
-fi
+target_dir="/tmp/download-$BUILDKITE_BUILD_ID"
+echo "Using target directory $target_dir"
+mkdir -p "$target_dir"
+args+=("--directory-prefix=$target_dir")
+export BUILDKITE_DOWNLOADS_PATH="$target_dir"
 
 plugin_read_list_into_result BUILDKITE_PLUGIN_DOWNLOAD_URLS || {
     echo "🚨 didn't get a value for $BUILDKITE_PLUGIN_DOWNLOAD_URLS" >&2
