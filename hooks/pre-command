@@ -28,7 +28,7 @@ plugin_read_list_into_result() {
 
 target_dir="/tmp/download-$BUILDKITE_BUILD_ID"
 echo "Using target directory $target_dir"
-mkdir -p "$target_dir"
+mkdir "$target_dir"
 args+=("--directory-prefix=$target_dir")
 export BUILDKITE_DOWNLOADS_PATH="$target_dir"
 

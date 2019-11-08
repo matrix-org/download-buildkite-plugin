@@ -6,8 +6,6 @@ configuration:
   properties:
     urls:
       type: array
-    target-directory:
-      type: string
 
   required:
     - urls
