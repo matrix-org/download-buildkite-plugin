@@ -1,0 +1,5 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "Cleaning up downloads directory $BUILDKITE_DOWNLOADS_PATH"
+rm -r "$BUILDKITE_DOWNLOADS_PATH"
