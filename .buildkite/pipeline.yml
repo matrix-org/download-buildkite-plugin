@@ -12,8 +12,7 @@ steps:
   - wait
 
   - label: try it out
-    command:
-      - sh -c "cat ${BUILDKITE_DOWNLOADS_PATH}/README.md"
+    command: cat $${BUILDKITE_DOWNLOADS_PATH}/README.md"
     plugins:
       - ${BUILDKITE_REPO}#${BUILDKITE_COMMIT}:
           urls:
